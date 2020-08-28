@@ -3,8 +3,8 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
-require('../../node_modules/admin-lte/bower_components/jquery/dist/jquery');
+window.Popper = require('popper.js').default;
+window.$ = window.jQuery = require('jquery');
 require('../../node_modules/admin-lte/bower_components/bootstrap/dist/js/bootstrap');
 require('../../node_modules/admin-lte/bower_components/moment/moment');
 require('../../node_modules/admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker');

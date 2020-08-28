@@ -1,73 +1,110 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('custom/login.css') }}" rel="stylesheet">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+</head>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+<body>
+    <div class="login-page">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="login-form">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="text-center lead">
+                                {{--<img src="{{ asset('images/logo.png') }}" style="width: 100%">--}}
                             </div>
-                        </div>
+                            <h3 class='text-center'>
+                                {{ ucwords(str_replace('_', ' ', config('app.name', 'Laravel'))) }}
+                            </h3>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <hr>
+                            <form class="form form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                                {{ csrf_field() }}
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <span class="text-danger text-center alert"></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} row">
+                                    <label for="username" class="col-md-4 control-label">Username</label>
+                                    <div class="col-md-8">
+                                        <input id="username" type="text" class="form-control" name="nik" value="{{ old('username') }}" required autofocus>
+                                        @if ($errors->has('username'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('username') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} row">
+                                    <label for="password" class="col-md-4 col-form-label">Password</label>
+
+                                    <div class="col-md-8">
+                                        <input id="password" type="password" class="form-control" name="password" required>
+
+                                        @if ($errors->has('password'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success btn-block">
+                                            Login
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-6">
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <script>
+        $('.form-horizontal').submit(function(){
+            $('.btn-block').prop({'disabled':true});
+            $.ajax({
+                url     : $(this).attr('action'),
+                type    : $(this).attr('method'),
+                dataType: 'JSON',
+                data    : $(this).serialize(),
+                error   : function (e) {
+                    $('.btn-block').prop({'disabled':false});
+                    $('.text-danger').html(e.responseJSON.message);
+                },
+                success : function (e) {
+                    window.location.href='/';
+                }
+            });
+            return false;
+        });
+    </script>
+</body>
+</html>

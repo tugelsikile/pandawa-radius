@@ -1,8 +1,17 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+//@import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
+
+@import "../../node_modules/admin-lte/node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker.css";
+@import "../../node_modules/admin-lte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.css";
+@import "../../node_modules/admin-lte/bower_components/select2/dist/css/select2.css";
+@import "../../node_modules/admin-lte/bower_components/datatables.net-bs/css/dataTables.bootstrap.css";
+@import "../../node_modules/admin-lte/plugins/iCheck/all.css";
+@import "../../node_modules/admin-lte/dist/css/AdminLTE.css";
+@import "../../node_modules/admin-lte/dist/css/skins/_all-skins.css";

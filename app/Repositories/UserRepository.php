@@ -29,10 +29,10 @@ class UserRepository{
             $order_by   = isset($request->order_by) ? $request->order_by : 'name';
             $order_dir  = isset($request->order_dir) ? $request->order_dir : 'asc';
             $data = User::where(function ($q) use ($keyword,$cab_id){
-                if (strlen($cab_id)>0) $q->where('cab_id',$cab_id);
                 $q->where('name','like',"%$keyword%");
                 $q->orWhere('email','like',"%$keyword%");
             })->orderBy($order_by,$order_dir);
+            if (strlen($cab_id)>0) $data = $data->where('cab_id',$cab_id);
             if ($no_limit){
                 $data = $data->get();
             } else {

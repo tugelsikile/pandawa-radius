@@ -47,7 +47,7 @@ class UserController extends Controller
     }
     public function AllUserLevel(Request $request){
         try{
-            $data   = $this->UserRepository->AllUserLevel();
+            $data   = $this->UserRepository->AllUserLevel($request);
         }catch (Exception $exception){
             throw new Exception($exception->getMessage());
         }

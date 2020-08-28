@@ -21,11 +21,27 @@ class seedAdminUser extends Seeder
             if ($check_user->count()===0){
                 $new_user   = new User();
                 $new_user->id           = Uuid::uuid4()->toString();
-                $new_user->name         = 'Admininstrator';
+                $new_user->name         = 'Administrator';
                 $new_user->email        = 'admin@pandawa-radius.net';
                 $new_user->password     = \Illuminate\Support\Facades\Hash::make('admin');
                 $new_user->level_id     = $user_level;
                 $new_user->save();
+                $this->command->line('seed admin');
+            }
+        }
+        $user_level = UserLevel::where('name','Operator')->get();
+        if ($user_level->count()>0){
+            $user_level = $user_level->first()->id;
+            $check_user = User::where('name','Operator Radius')->get();
+            if ($check_user->count()===0){
+                $new_user   = new User();
+                $new_user->id           = Uuid::uuid4()->toString();
+                $new_user->name         = 'Operator';
+                $new_user->email        = 'operator@pandawa-radius.net';
+                $new_user->password     = \Illuminate\Support\Facades\Hash::make('operator');
+                $new_user->level_id     = $user_level;
+                $new_user->save();
+                $this->command->line('seed operator');
             }
         }
     }

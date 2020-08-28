@@ -8,4 +8,5 @@ class Privilege extends Model
 {
     protected $table = 'privileges';
     public $incrementing = false;
+
 }

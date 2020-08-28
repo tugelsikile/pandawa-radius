@@ -28,6 +28,7 @@ class seedMenus extends Seeder
                 $router->orders = $menu['orders'];
                 $router->parent_id = $menu['parent_id'];
                 $router->save();
+                $this->command->line('seed '.$menu['name']);
             }
         }
     }

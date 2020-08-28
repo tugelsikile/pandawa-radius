@@ -100,8 +100,13 @@ class UserRepository{
         return $data;
     }
     public function GetUser(Request $request){
+        $data = [];
         try{
-            $data   = User::where($request->column,$request->value)->get();
+            if (isset($request->column) && isset($request->value)){
+                if (strlen($request->column)>0 && strlen($request->value)>0){
+                    $data   = User::where($request->column,$request->value)->get();
+                }
+            }
         }catch (Exception $exception){
             throw new Exception($exception->getMessage());
         }

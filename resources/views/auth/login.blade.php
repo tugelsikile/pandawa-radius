@@ -29,13 +29,9 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="text-center lead">
-                                {{--<img src="{{ asset('images/logo.png') }}" style="width: 100%">--}}
+                                <img src="{{ asset('custom/logo.png') }}" style="width: 100%">
                             </div>
-                            <h3 class='text-center'>
-                                {{ ucwords(str_replace('_', ' ', config('app.name', 'Laravel'))) }}
-                            </h3>
-
-                            <hr>
+                            
                             <form class="form form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}
 
@@ -48,7 +44,7 @@
                                 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} row">
                                     <label for="username" class="col-md-4 control-label">Username</label>
                                     <div class="col-md-8">
-                                        <input id="username" type="text" class="form-control" name="nik" value="{{ old('username') }}" required autofocus>
+                                        <input id="username" type="text" class="form-control" name="email" value="{{ old('username') }}" required autofocus>
                                         @if ($errors->has('username'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('username') }}</strong>

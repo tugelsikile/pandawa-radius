@@ -22,4 +22,8 @@ Route::group(['prefix'=>'user'],function (){
     Route::get('/list','UserController@ListAll')->name('user.list');
     Route::post('/create','UserController@StoreUser')->name('user.create');
     Route::post('/table','UserController@ListTable')->name('user.table');
+
+    Route::group(['prefix'=>'level'],function (){
+        Route::get('/list','UserController@AllUserLevel')->name('user.level');
+    });
 });

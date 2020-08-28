@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\User;
+use App\UserLevel;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -60,5 +61,13 @@ class UserRepository{
             throw new Exception($exception->getMessage());
         }
         return $request;
+    }
+    public function AllUserLevel(Request $request){
+        try{
+            $data       = UserLevel::all();
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+        return $data;
     }
 }

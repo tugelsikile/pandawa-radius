@@ -45,4 +45,12 @@ class UserController extends Controller
         }
         return format(1000,'User Created',$save);
     }
+    public function AllUserLevel(Request $request){
+        try{
+            $data   = $this->UserRepository->AllUserLevel();
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+        return format(1000,'Data loaded',$data);
+    }
 }

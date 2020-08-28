@@ -31,7 +31,7 @@
                             <div class="text-center lead">
                                 <img src="{{ asset('custom/logo.png') }}" style="width: 100%">
                             </div>
-                            
+
                             <form class="form form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}
 

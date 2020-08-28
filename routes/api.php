@@ -20,8 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix'=>'user'],function (){
     Route::get('/list','UserController@ListAll')->name('user.list');
-    Route::post('/create','UserController@StoreUser')->name('user.create');
+    Route::get('/get','UserController@GetUser')->name('user.get');
     Route::post('/table','UserController@ListTable')->name('user.table');
+    Route::post('/create','UserController@StoreUser')->name('user.create');
+    Route::post('/update','UserController@UpdateUser')->name('user.update');
+    Route::post('/delete','UserController@DeleteUser')->name('user.delete');
 
     Route::group(['prefix'=>'level'],function (){
         Route::get('/list','UserController@AllUserLevel')->name('user.level');

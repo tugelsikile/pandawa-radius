@@ -72,4 +72,39 @@ class UserRepository{
         }
         return $data;
     }
+    public function UpdateUser(Request $request){
+        try{
+            $data           = User::where('id',$request->id)->get()->first();
+            $data->name     = $request->name;
+            $data->email    = $request->email;
+            if (isset($request->password)){
+                if (strlen($request->password)>0){
+                    $data->password = Hash::make($request->password);
+                }
+            }
+            $data->cab_id   = isset($request->cab_id) ? strlen($request->cab_id) > 0 ? $request->cab_id : null : null;
+            $data->level_id = $request->user_level;
+            $data->save();
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+        return $data;
+    }
+    public function DeleteUser(Request $request){
+        try{
+            $data   = User::where('id',$request->id)->get()->first();
+            $data->delete();
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+        return $data;
+    }
+    public function GetUser(Request $request){
+        try{
+            $data   = User::where($request->column,$request->value)->get();
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+        return $data;
+    }
 }

@@ -53,4 +53,32 @@ class UserController extends Controller
         }
         return format(1000,'Data loaded',$data);
     }
+    public function UpdateUser(Request $request){
+        try{
+            $valid  = $this->UserValidation->UpdateUser($request);
+            if (is_string($valid)) return format(500,$valid,$request);
+            $save   = $this->UserRepository->UpdateUser($valid);
+            return format(1000,'User Updated',$save);
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+    }
+    public function DeleteUser(Request $request){
+        try{
+            $valid  = $this->UserValidation->DeleteUser($request);
+            if (is_string($valid)) return format(500,$valid,$request);
+            $save   = $this->UserRepository->DeleteUser($valid);
+            return format(1000,'User Deleted',$save);
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+    }
+    public function GetUser(Request $request){
+        try{
+            $data   = $this->UserRepository->GetUser($request);
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+        return format(1000,'Data loaded',$data);
+    }
 }

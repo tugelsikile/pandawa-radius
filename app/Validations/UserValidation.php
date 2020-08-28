@@ -13,7 +13,7 @@ class UserValidation{
                 'name' => 'required|string',
                 'email' => 'required|string|unique:users,email',
                 'password' => 'required|string|min:6',
-                'cab_id' => 'required|string',
+                'cab_id' => 'sometimes|string',
                 'user_level' => 'required|string|exists:user_levels,id'
             ]);
             if ($valid->fails()){

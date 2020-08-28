@@ -14,7 +14,8 @@ class UserRepository{
         try{
             $data   = User::all();
             $data->map(function ($data){
-                $data->user_level = $data->UserLevel;
+                $data->level_id = $data->UserLevel;
+                $data->makeHidden('UserLevel');
             });
             return $data;
         }catch (Exception $exception){
@@ -40,7 +41,8 @@ class UserRepository{
                 $data = $data->limit($limit,$offset)->get();
             }
             $data->map(function ($data){
-                $data->user_level = $data->UserLevel;
+                $data->level_id = $data->UserLevel;
+                $data->makeHidden('UserLevel');
             });
         }catch (Exception $exception){
             throw new Exception($exception->getMessage());
@@ -54,8 +56,8 @@ class UserRepository{
             $data->name     = $request->name;
             $data->email    = $request->email;
             $data->password = Hash::make($request->password);
-            $data->cab_id   = $request->cab_id;
-            $data->user_level = $request->user_level;
+            $data->cab_id   = isset($request->cab_id) ? strlen($request->cab_id) > 0 ? $request->cab_id : null : null;
+            $data->level_id = $request->user_level;
             $data->save();
         }catch (Exception $exception){
             throw new Exception($exception->getMessage());

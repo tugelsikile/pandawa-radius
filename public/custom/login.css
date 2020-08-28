@@ -1,0 +1,63 @@
+.login-page { 
+    background-color: #fff; 
+    position: fixed; top:0; bottom:0; left:0; right:0;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 150px;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+
+}
+.banner-image{
+    background-image: url('server.svg');
+    background-position-y: 50px;
+    background-repeat: no-repeat;
+    padding-top: 100px;
+    background-size: 100%;
+    opacity: 0.9;
+    overflow-y: visible;
+    min-height: 1000px;
+    
+}
+
+.login-page .panel-default{
+    background: rgba(255,255,255,.8);
+}
+
+.login-page .login-form { max-width: 350px; margin: 0 auto; margin-top:5%; }
+
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}

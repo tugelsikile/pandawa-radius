@@ -1,0 +1,4 @@
+fonts/*
+images/*
+!custom/custom.css
+!custom/custom.js

@@ -25,11 +25,12 @@ class seedPrivileges extends Seeder
                     $privilege->id          = Uuid::uuid4()->toString();
                     $privilege->level_id    = $user_level->id;
                     $privilege->menu_id     = $menu->id;
-                    $privilege->R_opt       = 1;
-                    $privilege->C_opt       = 1;
-                    $privilege->U_opt       = 1;
-                    $privilege->D_opt       = 1;
+                    $privilege->R_opt       = $user_level->name == 'Admin' ? 1 : 0;
+                    $privilege->C_opt       = $user_level->name == 'Admin' ? 1 : 0;
+                    $privilege->U_opt       = $user_level->name == 'Admin' ? 1 : 0;
+                    $privilege->D_opt       = $user_level->name == 'Admin' ? 1 : 0;
                     $privilege->save();
+                    $this->command->line($user_level->name . 'seeded with '.$menu->name);
                 }
             }
         }

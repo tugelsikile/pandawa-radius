@@ -8,4 +8,5 @@ class UserLevel extends Model
 {
     protected $table = 'user_levels';
     public $incrementing = false;
+
 }

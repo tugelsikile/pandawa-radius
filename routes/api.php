@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix'=>'user'],function (){
+    Route::get('/list','UserController@ListAll')->name('user.list');
+    Route::post('/create','UserController@StoreUser')->name('user.create');
+});

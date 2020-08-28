@@ -13,4 +13,5 @@ require('../../node_modules/admin-lte/bower_components/select2/dist/js/select2')
 require('../../node_modules/admin-lte/bower_components/datatables.net/js/jquery.dataTables');
 require('../../node_modules/admin-lte/bower_components/datatables.net-bs/js/dataTables.bootstrap');
 require('../../node_modules/admin-lte/plugins/iCheck/all.css');
-require('../../node_modules/admin-lte/dist/js/adminlte.min');
+require('../../node_modules/admin-lte/dist/js/adminlte');
+require('../../node_modules/admin-lte/dist/js/demo');

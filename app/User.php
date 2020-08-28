@@ -37,6 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public $incrementing = false;
+
     public function UserLevel(){
         return $this->belongsTo(UserLevel::class,'level_id','id');
     }

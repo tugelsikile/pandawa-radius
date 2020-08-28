@@ -22,6 +22,19 @@ class UserController extends Controller
         }
         return format(1000,'Data Loaded',$data);
     }
+    public function ListTable(Request $request){
+        try{
+            $data = [
+                'data' => $this->UserRepository->ListTable($request),
+                'draw' => $request->draw,
+                'recordsFiltered' => count($this->UserRepository->ListTable($request,true)),
+                'recordsTotal' => count($this->UserRepository->ListTable($request,true))
+            ];
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+        return format(1000,'Data Loaded',$data);
+    }
     public function StoreUser(Request $request){
         try{
             $valid  = $this->UserValidation->StoreUser($request);

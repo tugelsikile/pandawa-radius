@@ -105,6 +105,10 @@ class UserRepository{
             if (isset($request->column) && isset($request->value)){
                 if (strlen($request->column)>0 && strlen($request->value)>0){
                     $data   = User::where($request->column,$request->value)->get();
+                    $data->map(function ($data){
+                        $data->level_id = $data->UserLevel;
+                        $data->makeHidden('UserLevel');
+                    });
                 }
             }
         }catch (Exception $exception){

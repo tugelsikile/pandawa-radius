@@ -29,13 +29,17 @@ class UserValidation{
             $valid = Validator::make($request->all(),[
                 'id' => 'required|string|exists:users,id',
                 'name' => 'required|string',
-                'email' => 'required|string|unique:users,email',
-                'password' => 'sometimes|string|min:6',
+                'email' => 'required|string|unique:users,email,'.$request->id.',id',
                 'cab_id' => 'sometimes|string',
                 'user_level' => 'required|string|exists:user_levels,id'
             ]);
             if ($valid->fails()){
                 return collect($valid->errors()->all())->join('#');
+            }
+            if (isset($request->password)){
+                if (strlen($request->password)>0 && strlen($request->password)<6){
+                    return 'Password terlalu sedikit';
+                }
             }
         }catch (Exception $exception){
             throw new Exception($exception->getMessage());

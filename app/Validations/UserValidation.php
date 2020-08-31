@@ -29,7 +29,6 @@ class UserValidation{
             $valid = Validator::make($request->all(),[
                 'id' => 'required|string|exists:users,id',
                 'name' => 'required|string',
-                'email' => 'required|string|unique:users,email,'.$request->id.',id',
                 'cab_id' => 'sometimes|string',
                 'user_level' => 'required|string|exists:user_levels,id'
             ]);

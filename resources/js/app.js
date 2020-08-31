@@ -15,3 +15,4 @@ require('../../node_modules/admin-lte/bower_components/datatables.net-bs/js/data
 require('../../node_modules/admin-lte/plugins/iCheck/all.css');
 require('../../node_modules/admin-lte/dist/js/adminlte');
 require('../../node_modules/admin-lte/dist/js/demo');
+require('./custom');

@@ -229,4 +229,6 @@ return [
 
     ],
 
+    'billing' => env('MIX_API_BILLING','http://pandawa.lan')
+
 ];

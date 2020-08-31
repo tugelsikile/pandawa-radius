@@ -29,6 +29,7 @@ class seedPrivileges extends Seeder
                     $privilege->C_opt       = $user_level->name == 'Admin' ? 1 : 0;
                     $privilege->U_opt       = $user_level->name == 'Admin' ? 1 : 0;
                     $privilege->D_opt       = $user_level->name == 'Admin' ? 1 : 0;
+                    $privilege->orders      = $menu->orders;
                     $privilege->save();
                     $this->command->line($user_level->name . 'seeded with '.$menu->name);
                 }

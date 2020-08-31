@@ -9,9 +9,18 @@
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-
         <ul class="sidebar-menu" data-widget="tree">
             <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            @if(session()->has('menus'))
+                @forelse(session()->get('menus') as $key => $menu)
+                    @if($menu['R_opt'] === 1)
+                        <li>
+                            <a href="{{url($menu['menu_id']['route'])}}"><i class="fa {{$menu['menu_id']['icon']}}"></i> <span>{{$menu['menu_id']['name']}}</span></a>
+                        </li>
+                    @endif
+                @empty
+                @endforelse
+            @endif
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>

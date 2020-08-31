@@ -14,6 +14,14 @@ class UserController extends Controller
         $this->UserRepository   = new UserRepository();
         $this->UserValidation   = new UserValidation();
     }
+    public function index(Request $request){
+        try{
+            $users  = $this->UserRepository->ListAll($request);
+            return view('Users.Manage',compact('users'));
+        }catch (Exception $exception){
+            throw new Exception($exception->getMessage());
+        }
+    }
     public function ListAll(Request $request){
         try{
             $data   = $this->UserRepository->ListAll($request);

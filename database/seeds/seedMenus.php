@@ -14,10 +14,11 @@ class seedMenus extends Seeder
     public function run()
     {
         $menus = [
-            [ 'id' => Uuid::uuid4()->toString(), 'name' => 'Router', 'route' => '/routers', 'label' => 'Router', 'icon' => '', 'orders' => 0, 'parent_id' => null ],
+            [ 'id' => Uuid::uuid4()->toString(), 'name' => 'Router', 'route' => '/routers', 'label' => 'Router', 'icon' => 'fa-server', 'orders' => 0, 'parent_id' => null ],
+            [ 'id' => Uuid::uuid4()->toString(), 'name' => 'User', 'route' => '/users', 'label' => 'User', 'icon' => 'fa-users', 'orders' => 1, 'parent_id' => null ],
         ];
         foreach ($menus as $menu){
-            $chk = Menus::where('name','Router')->get();
+            $chk = Menus::where('name',$menu['name'])->get();
             if ($chk->count()===0){
                 $router = new Menus();
                 $router->id     = $menu['id'];

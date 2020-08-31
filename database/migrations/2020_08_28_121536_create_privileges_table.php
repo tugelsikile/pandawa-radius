@@ -21,6 +21,7 @@ class CreatePrivilegesTable extends Migration
             $table->boolean('C_opt')->default(1);
             $table->boolean('U_opt')->default(1);
             $table->boolean('D_opt')->default(1);
+            $table->integer('orders');
             $table->timestamps();
             $table->foreign('level_id')->on('user_levels')->references('id')->onDelete('cascade')->onUpdate('no action');
             $table->foreign('menu_id')->on('menus')->references('id')->onDelete('cascade')->onUpdate('no action');

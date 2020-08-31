@@ -36,7 +36,7 @@ class seedAdminUser extends Seeder
             if ($check_user->count()===0){
                 $new_user   = new User();
                 $new_user->id           = Uuid::uuid4()->toString();
-                $new_user->name         = 'Operator';
+                $new_user->name         = 'Operator Radius';
                 $new_user->email        = 'operator@pandawa-radius.net';
                 $new_user->password     = \Illuminate\Support\Facades\Hash::make('operator');
                 $new_user->level_id     = $user_level;

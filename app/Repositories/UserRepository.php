@@ -10,11 +10,21 @@ use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 
 class UserRepository{
+    public function __construct()
+    {
+        $this->cabangRepository = new CabangRepository();
+    }
+
     public function ListAll(Request $request){
         try{
-            $data   = User::all();
+            if (strlen(auth()->user()->cab_id)>0){
+                $data = User::where('cab_id',auth()->user()->cab_id)->get();
+            } else {
+                $data   = User::all();
+            }
             $data->map(function ($data){
                 $data->level_id = $data->UserLevel;
+                $data->cabang   = json_decode($data->cab_id);
                 $data->makeHidden('UserLevel');
             });
             return $data;
